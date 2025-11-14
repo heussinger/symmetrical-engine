@@ -15,6 +15,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 	
+	@GetMapping("/saysomething")
 	public String getMethodName(@RequestParam String param) {
 		return new String();
 	}
