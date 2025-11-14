@@ -27,7 +27,7 @@ public class SoftwareEngineerController {
     
     @GetMapping("{id}")
     public SoftwareEngineer getEngineerById(@PathVariable Integer id) {
-        // Implementation to retrieve all software engineers
+        // Implementation to retrieve a software engineer by Id
         return softwareEngineerService.getSoftwareEngineerById(id);
     }
 
