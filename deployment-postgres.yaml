@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest
+          imagePullPolicy: IfNotPresent 
+          volumeMounts:
+            - mountPath: /data/postgres
+              name: data
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USEr
+              value: user
+            - name: POSTGRES_PASSWORD
+              value: password
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: my-pvc  
