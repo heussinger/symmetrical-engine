@@ -22,12 +22,17 @@ spec:
               name: data
           ports:
             - containerPort: 5432
-          env:
-            - name: POSTGRES_USEr
-              value: user
-            - name: POSTGRES_PASSWORD
-              value: password
+          envFrom:
+            - secretRef:
+                name: postgres-pwd-secret
+        #  env:
+        #  - name: POSTGRES_USER
+        #    value: user
+        #  - name: POSTGRES_PASSWORD
+        #    value: password
+        #  - name: POSTGRES_DB
+        #    value: userdb
       volumes:
         - name: data
-          persistentVolumeClaim:
-            claimName: my-pvc  
+          emptyDir:
+            sizeLimit: 100Mi
