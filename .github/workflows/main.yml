@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "mainn" ]
+  pull_request:
+    branches: [ "mainn" ]
+
+jobs:
+  docker:
+    runs-on: self-hosted
+    steps: 
+    - uses: actions/checkout@v4
+    
+    - name: Set current date as env variable
+      run: echo "time=$(date +%s)" >> $GITHUB_ENV
+    
+    - name: Extract Docker image metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ vars.DOCKER_NAME }}/bug-free
+    
+    - name: Login to DockerHub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ vars.DOCKER_NAME }}
+        password: ${{ secrets.DOCKER_PWD }}
+      
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        push: true
+        platforms: linux/amd64
+        tags: ${{ vars.DOCKER_NAME }}/symmetrical-engine:${{ env.time }}
