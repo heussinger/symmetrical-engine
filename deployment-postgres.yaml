@@ -32,7 +32,11 @@ spec:
         #    value: password
         #  - name: POSTGRES_DB
         #    value: userdb
+      #volumes:
+      #  - name: data
+      #    emptyDir:
+      #      sizeLimit: 100Mi
       volumes:
         - name: data
-          emptyDir:
-            sizeLimit: 100Mi
+          persistentVolumeClaim:
+            claimName: dbpvc
