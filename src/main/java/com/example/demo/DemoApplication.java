@@ -16,8 +16,9 @@ public class DemoApplication {
 	}
 	
 	@GetMapping("/saysomething")
-	public String getMethodName(@RequestParam(required=false) String name,@RequestParam(defaultValue="") String tchStck) {
-		return name ? "Your name: " + name : "Who are you?";
+	public String getMethodName(@RequestParam(defaultValue="") String name, @RequestParam(defaultValue="") String tchStck) {
+		return "Your name is " + name + " and your tech stack is (" + tchStck + ")";
+	       
 	}
 	
 	@GetMapping
