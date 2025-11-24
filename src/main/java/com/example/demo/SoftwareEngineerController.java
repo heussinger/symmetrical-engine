@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,9 +32,21 @@ public class SoftwareEngineerController {
         return softwareEngineerService.getSoftwareEngineerById(id);
     }
 
+    @GetMapping("/new")
+    public String createNewEngineer(@RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "") String techStack) {
+        
+        SoftwareEngineer softwareEngineer = new SoftwareEngineer(name,techStack);
+        softwareEngineerService.insertSoftwareEngineer(softwareEngineer);
+        return "Created engineer with name: " + name + " and tech stack: " + techStack;
+    }
+
     @PostMapping
     public void addNewSoftwareEngineer(@RequestBody SoftwareEngineer softwareEngineer) {
         softwareEngineerService.insertSoftwareEngineer(softwareEngineer);
     }
 
+    @GetMapping("/delete/{id}")
+    public void deleteSoftwareEngineer(@PathVariable Integer id) {
+        softwareEngineerService.deleteSoftwareEngineer(id);
+    }
 }

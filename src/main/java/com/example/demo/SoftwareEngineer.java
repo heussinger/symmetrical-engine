@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.util.List;
+//import java.util.List;
 
 @Entity
 public class SoftwareEngineer {
@@ -24,7 +24,7 @@ public class SoftwareEngineer {
         this.techStack = "";
     }
 
-    public SoftwareEngineer(Integer id, String name, String techStack) {
+    public SoftwareEngineer(String name, String techStack) {
         this.id = id;
         this.name = name;
         this.techStack = techStack;

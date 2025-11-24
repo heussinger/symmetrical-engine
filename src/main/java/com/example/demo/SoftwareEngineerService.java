@@ -29,4 +29,17 @@ public class SoftwareEngineerService {
     public void insertSoftwareEngineer(SoftwareEngineer softwareEngineer) {
         softwareEngineerRepository.save(softwareEngineer);
     }
+
+    public void deleteSoftwareEngineer(Integer id) {
+        boolean exists = softwareEngineerRepository.existsById(id);
+        if (!exists) {
+            throw new IllegalStateException(
+                "Software Engineer with id " + id + " does not exist"
+            );
+        }
+        else {
+            softwareEngineerRepository.deleteById(id);
+        }
+    }
+
 }
