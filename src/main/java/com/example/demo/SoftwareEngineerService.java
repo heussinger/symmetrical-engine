@@ -42,4 +42,16 @@ public class SoftwareEngineerService {
         }
     }
 
+    public void updateSoftwareEngineer(Integer id, SoftwareEngineer softwareEngineer) {
+        SoftwareEngineer existingEngineer = softwareEngineerRepository.findById(id)
+            .orElseThrow(() -> new IllegalStateException(
+                "Software Engineer with id " + id + " does not exist"
+            ));
+
+        existingEngineer.setName(softwareEngineer.getName());
+        existingEngineer.setTechStack(softwareEngineer.getTechStack());
+
+        softwareEngineerRepository.save(existingEngineer);
+    }
+
 }
