@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.SoftwareEngineer;
+import com.example.demo.repository.SoftwareEngineerRepository;
+
 @Service
 public class SoftwareEngineerService {
 

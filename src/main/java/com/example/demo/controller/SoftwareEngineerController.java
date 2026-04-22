@@ -1,10 +1,14 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.SoftwareEngineerService;
+import com.example.demo.entity.SoftwareEngineer;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
