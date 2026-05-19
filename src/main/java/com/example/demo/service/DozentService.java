@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.repository.DozentRepository;
 import com.example.demo.entity.Dozent;
 
+@Service
 public class DozentService {
     
     private final DozentRepository dozentRepository;
