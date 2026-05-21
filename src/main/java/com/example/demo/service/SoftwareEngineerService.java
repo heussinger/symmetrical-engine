@@ -26,7 +26,6 @@ public class SoftwareEngineerService {
         return softwareEngineerRepository.findById(id).orElseThrow(() -> new IllegalStateException(
             "Software Engineer with id " + id + " does not exist"
         ));
-
     }
 
     public void insertSoftwareEngineer(SoftwareEngineer softwareEngineer) {
