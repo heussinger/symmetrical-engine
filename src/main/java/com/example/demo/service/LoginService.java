@@ -12,12 +12,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
 
-    @Autowired
     private AuthenticationManager authenticationManager;
+
+    public LoginService(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
     public SecurityContext checkCredentials(String username, String password) {
         // Implementation for login logic
-        // This is where you would typically check the username and password against a database
+        // check username and password against a database
         // and generate a token or session if the credentials are valid.
 
         try {

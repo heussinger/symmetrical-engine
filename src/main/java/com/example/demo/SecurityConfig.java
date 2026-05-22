@@ -16,6 +16,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+
+import jakarta.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableWebSecurity
@@ -27,6 +30,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth->auth
                 .requestMatchers("/api/v1/login").permitAll() // Allow anyone to access the login endpoint
+                .requestMatchers("/api/v1/logout").permitAll() // Only authenticated users can log out
                 .requestMatchers(HttpMethod.GET, "/api/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
@@ -39,6 +43,21 @@ public class SecurityConfig {
             // endpoint, do NOT redirect them to an HTML login page. Just send a 401 error."
             .exceptionHandling(exc -> exc
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+            )
+            // THE LOGOUT CONFIGURATION
+            .logout(logout -> logout
+                .logoutUrl("/api/v1/logout") // The URL React will hit
+            
+                // 1. Erase the session and clear the context
+                .invalidateHttpSession(true) 
+                .clearAuthentication(true)   
+            
+                // 2. Delete the cookie from the user's browser
+                .deleteCookies("JSESSIONID") 
+            
+                //.logoutSuccessUrl("/login")
+                // 3. Return a 200 OK instead of an HTML redirect
+                .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler(HttpStatus.OK))
             )
             ;
 

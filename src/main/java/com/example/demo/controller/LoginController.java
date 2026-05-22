@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -45,7 +47,12 @@ public class LoginController {
         // Tomcat will automatically generate a "Set-Cookie: JSESSIONID=..." header.
         securityContextRepository.saveContext(context, request, response);
 
-        return ResponseEntity.ok("Login successful");
+        // For demonstration purposes, we can also return the user's role in the response body.
+        String userRole = context.getAuthentication().getAuthorities().iterator().next().getAuthority();
+        System.out.println("User role: " + userRole);
+        //return as a header:
+        //return ResponseEntity.ok().header("X-User-Role", userRole).body("Login successful");
+        return ResponseEntity.ok(Map.of("message", "Login successful", "role", userRole));
         
     }
     
