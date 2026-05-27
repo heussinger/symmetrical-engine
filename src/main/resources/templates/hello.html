@@ -1,9 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
-        <title>Hello World!</title>
+        <title>Gas prices</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="/css/style.css" />
     </head>
     <body>
-        <h1>Hello world!</h1>
+        <h1>Gas prices</h1>
+        <p>This shows the current gas prices in the area.</p>
+        
+
+        <table id="gasTable">
+            <thead>
+            <tr>
+                <th>Station</th>
+                <th>Price</th>
+                <th>Distance</th>
+            </tr>
+            </thead>
+            <tbody id="gasTableBody">
+            </tbody>
+       </table>
+
+       <script src="/js/hello.js"></script>
     </body>
 </html>

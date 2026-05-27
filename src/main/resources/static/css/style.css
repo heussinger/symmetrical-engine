@@ -1,0 +1,36 @@
+body {
+    background-color: #050955;
+}
+ 
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+    color: #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: #ccc;
+}
+
+th {
+    background-color: #4CAF50;
+}
+
+tr:nth-child(even) {
+    background-color: #070d7e;
+}  
+
+tr:hover {
+    background-color: #09109f;
+}
