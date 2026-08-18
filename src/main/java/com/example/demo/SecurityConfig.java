@@ -87,7 +87,7 @@ public class SecurityConfig {
         // Create an admin user with the "ADMIN" role
         UserDetails adminUser = User.builder()
             .username("admin")
-            .password(passwordEncoder().encode(adminpwd))
+            .password(passwordEncoder.encode(adminpwd))
             .roles("ADMIN", "USER")
             .build();
 
