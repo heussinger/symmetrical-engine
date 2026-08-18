@@ -64,10 +64,10 @@ public class SecurityConfig {
         return http.build();
     }
 
-   @Value("${spring.security.adminPwd}")
+   @Value("${spring.security.myuser.adminpwd}")
    private String adminpwd;
 
-   @Value("${spring.security.userPwd}")
+   @Value("${spring.security.myuser.userpwd}")
    private String userpwd;
 
    @Bean
