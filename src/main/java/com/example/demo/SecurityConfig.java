@@ -64,19 +64,30 @@ public class SecurityConfig {
         return http.build();
     }
 
+   @Value("${spring.security.myuser.adminpwd}")
+   private String adminpwd;
+
+   @Value("${spring.security.myuser.userpwd}")
+   private String userpwd;
+
+   @Bean
+   public PasswordEncoder passwordEncoder() {
+       return new BCryptPasswordEncoder();
+   }
+   
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         // Create a basic user with only the "USER" role
         UserDetails normalUser = User.builder()
             .username("john")
-            .password("{noop}pwd") // {noop} tells Spring NOT to hash this test password
+            .password(passwordEncoder.encode(userpwd)) // "{noop}password" tells Spring NOT to hash this test password
             .roles("USER") 
             .build();
 
         // Create an admin user with the "ADMIN" role
         UserDetails adminUser = User.builder()
             .username("admin")
-            .password("{noop}supersecret")
+            .password(passwordEncoder.encode(adminpwd))
             .roles("ADMIN", "USER")
             .build();
 
