@@ -76,11 +76,11 @@ public class SecurityConfig {
    }
    
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         // Create a basic user with only the "USER" role
         UserDetails normalUser = User.builder()
             .username("john")
-            .password(passwordEncoder().encode(userpwd)) // "{noop}password" tells Spring NOT to hash this test password
+            .password(passwordEncoder.encode(userpwd)) // "{noop}password" tells Spring NOT to hash this test password
             .roles("USER") 
             .build();
 
