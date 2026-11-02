@@ -2,6 +2,6 @@
 spring:
   security:
     myuser:
-      userpwd: $USER_PWD
-      adminpwd: $ADMIN_PWD
+      userpwd: ${USER_PWD}
+      adminpwd: ${ADMIN_PWD}
 
