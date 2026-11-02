@@ -1,0 +1,7 @@
+
+spring:
+  security:
+    myuser:
+      userpwd: "user_pwd"
+      adminpwd: "admin_pwd"
+

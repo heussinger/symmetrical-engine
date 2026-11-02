@@ -13,6 +13,7 @@ FROM eclipse-temurin:21.0.13_9-jre@sha256:0b99b3376fbb50dbf9c0af8535fdd5b8eb0d3f
 WORKDIR /app
 
 COPY --from=builder /app/target/*.jar app.jar
+COPY application.yml config/application.yml
 
 CMD ["java", "-jar", "/app/app.jar"]
 
