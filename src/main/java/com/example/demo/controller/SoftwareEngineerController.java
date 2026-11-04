@@ -40,7 +40,7 @@ public class SoftwareEngineerController {
         return softwareEngineerService.getSoftwareEngineerById(id);
     }
 
-    @GetMapping("/new")
+    /*@GetMapping("/new")
     @PreAuthorize("hasRole('ADMIN')")
     public String createNewEngineer(@RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "") String techStack) {
         
@@ -48,6 +48,7 @@ public class SoftwareEngineerController {
         softwareEngineerService.insertSoftwareEngineer(softwareEngineer);
         return "Created engineer with name: " + name + " and tech stack: " + techStack;
     }
+        */
 
     @PostMapping
     public void addNewSoftwareEngineer(@RequestBody SoftwareEngineer softwareEngineer) {

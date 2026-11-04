@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.Message;
 import com.example.demo.entity.Dozent;
 import com.example.demo.service.DozentService;
 
@@ -34,7 +35,7 @@ public class DozentController {
         return dozentService.getAllDozenten();
     }
 
-    @GetMapping("/new")
+    /*@GetMapping("/new")
     @PreAuthorize("hasRole('ADMIN')")
     public String addNewDozent(@RequestParam(defaultValue = "") String vorname, 
                             @RequestParam(defaultValue = "") String nachname) {
@@ -42,7 +43,8 @@ public class DozentController {
         dozentService.addDozent(dozent);
         return new String("neuer Dozent heißt " + vorname + " " + nachname);
     }
-    
+    */
+
     @GetMapping("{id}")
     public Dozent getDozentById(@PathVariable Integer id) {
         // Implementation to retrieve a Dozent by Id
@@ -50,16 +52,15 @@ public class DozentController {
     }
 
     @PostMapping
-    public String newDozent(@RequestBody Dozent dozent) {
+    public void newDozent(@RequestBody Dozent dozent) {
         // Implementation to add a new Dozent
         dozentService.addDozent(dozent);    
-        return "Added new Dozent: " + dozent.getVorname() + " " + dozent.getNachname(); 
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteDozent(@PathVariable Integer id) {
+    public Message deleteDozent(@PathVariable Integer id) {
         dozentService.deleteDozent(id);
-        return new String("Dozent " + id + " wurde entfernt");
+        return new Message("Dozent " + id + " wurde entfernt");
     }
 
 
