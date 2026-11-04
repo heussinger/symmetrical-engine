@@ -41,7 +41,9 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
             )
             //.formLogin(Customizer.withDefaults())
-            .csrf(csrf -> csrf.disable())
+            .csrf(csrf -> csrf
+                .ignoringRequestMatchers("/api/v1/login")
+            )
             // This tells Spring: "If an unauthenticated user tries to access a secured 
             // endpoint, do NOT redirect them to an HTML login page. Just send a 401 error."
             .exceptionHandling(exc -> exc
