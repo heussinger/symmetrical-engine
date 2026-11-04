@@ -5,3 +5,10 @@ spring:
       userpwd: ${USER_PWD}
       adminpwd: ${ADMIN_PWD}
 
+
+server:
+  servlet:
+    session:
+      cookie:
+        same-site: lax
+        http-only: true
