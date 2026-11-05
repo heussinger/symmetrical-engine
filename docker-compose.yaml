@@ -31,6 +31,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/user
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: password
+      USER_PWD: ${USER_PWD:?USER_PWD muss gesetzt sein}
+      ADMIN_PWD: ${ADMIN_PWD:?ADMIN_PWD muss gesetzt sein}
     networks:
       - db-app
 

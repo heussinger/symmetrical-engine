@@ -22,8 +22,8 @@ public class DemoApplication {
 	}
 	
 	@GetMapping
-	public String helloWorld() {
-		return "Hello, World!";
+	public Message helloName(@RequestParam (defaultValue="World") String name) {
+		return new Message("Hello, " + name);
 	}
 
 }
